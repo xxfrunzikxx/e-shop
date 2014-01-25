@@ -1,0 +1,26 @@
+
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Image url</th>
+    <th>Price</th>
+    <th>Quantity</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @cart.line_items.each do |line_item| %>
+      <tr>
+        <td><%= line_item.product.name %></td>
+        <td><%= image_tag(line_item.product.image_url) %></td>
+        <td><%= line_item.product.price %></td>
+        <td><%= line_item.quantity %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %>
+<%= button_to "Empty cart", @cart, method: :delete, data: {confirm: "Are you sure?"}%>
